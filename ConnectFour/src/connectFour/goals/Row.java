@@ -17,9 +17,9 @@ public class Row extends Goal {
       Token previousToken = null;
       Token newToken = null;
 
-      for(int i = 0; i < tokens.length && !goalCompleted; i++) {
-         for(int j = 0; j < tokens[0].length && !goalCompleted; j++) {
-            newToken = tokens[i][j];
+      for(int row = 0; row < tokens.length && !goalCompleted; row++) {
+         for(int column = 0; column < tokens[0].length && !goalCompleted; column++) {
+            newToken = tokens[row][column];
 
             if (!newToken.equals(Token.NULL)) {
                if (!newToken.equals(previousToken)) {
