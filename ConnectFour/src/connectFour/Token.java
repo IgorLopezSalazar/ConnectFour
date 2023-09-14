@@ -2,18 +2,28 @@ package connectFour;
 
 public enum Token {
 
-   NULL, YELLOW, RED;
+	NULL(" "), YELLOW("Y"), RED("R");
 
-   public Token get(Integer index) {
-      Token resultToken = null;
-      
-      for (Token token : Token.values()) {
-         if (token.ordinal() == index) {
-            resultToken = token;
-         }
-      }
+	private final String printValue;
 
-      return resultToken;
-   }
+	private Token(String printValue) {
+		this.printValue = printValue;
+	}
+	
+	public String getPrintValue() {
+		return printValue;
+	}
+
+	public Token get(Integer index) {
+		Token resultToken = null;
+
+		for (Token token : Token.values()) {
+			if (token.ordinal() == index) {
+				resultToken = token;
+			}
+		}
+
+		return resultToken;
+	}
 
 }

@@ -6,12 +6,12 @@ public class Column extends Goal {
 
    private Token tokens[][];
 
-   Column(Token tokens[][]) {
+   public Column(Token tokens[][]) {
       this.tokens = tokens;
    }
 
    public Boolean checkGoalRule() {
-      return null;
+      return false;
    }
 
 }

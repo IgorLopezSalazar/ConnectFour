@@ -6,7 +6,7 @@ public class Row extends Goal {
 
    private Token tokens[][];
 
-   Row(Token tokens[][]) {
+   public Row(Token tokens[][]) {
       this.tokens = tokens;
    }
 

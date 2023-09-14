@@ -6,12 +6,12 @@ public class Diagonal extends Goal {
 
    private Token tokens[][];
 
-   Diagonal(Token tokens[][]) {
+   public Diagonal(Token tokens[][]) {
       this.tokens = tokens;
    }
 
    public Boolean checkGoalRule() {
-      return null;
+      return false;
    }
 
 }

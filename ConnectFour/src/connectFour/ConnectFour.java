@@ -1,10 +1,23 @@
 package connectFour;
 
 public class ConnectFour {
+	Turn turn;
+	Board board;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	ConnectFour() {
+		board = new Board();
+		turn = new Turn(board);
 	}
 
+	private void playGame() {
+		while (!board.isGoalCompleted() && !board.isBoardCompleted()) {
+			turn.startPlayerTurn();
+			turn.switchPlayer();
+		}
+	}
+
+	public static void main(String[] args) {
+		ConnectFour connectFour = new ConnectFour();
+		connectFour.playGame();
+	}
 }
