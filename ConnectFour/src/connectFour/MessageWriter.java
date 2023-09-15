@@ -1,4 +1,4 @@
-package connectFour.goals;
+package connectFour;
 
 public class MessageWriter {
 	

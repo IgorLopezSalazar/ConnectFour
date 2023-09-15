@@ -8,18 +8,17 @@ import connectFour.goals.Column;
 import connectFour.goals.Diagonal;
 import connectFour.goals.Goal;
 import connectFour.goals.InverseDiagonal;
-import connectFour.goals.MessageWriter;
 import connectFour.goals.Row;
 
 public class Board {
-	static Integer X_BOARD_SIZE = 6;
-	static Integer Y_BOARD_SIZE = 7;
+	static Integer ROW_BOARD_SIZE = 6;
+	static Integer COLUMN_BOARD_SIZE = 7;
 	List<Goal> goals;
 	Token[][] tokens;
 
 	Board() {
-		tokens = new Token[X_BOARD_SIZE][Y_BOARD_SIZE];
-		for (int i = 0; i < X_BOARD_SIZE; i++) {
+		tokens = new Token[ROW_BOARD_SIZE][COLUMN_BOARD_SIZE];
+		for (int i = 0; i < ROW_BOARD_SIZE; i++) {
 			Arrays.fill(tokens[i], Token.NULL);
 		}
 		establishPossibleGoals();
@@ -45,8 +44,8 @@ public class Board {
 	public Boolean isBoardCompleted() {
 		Boolean nullFound = false;
 
-		for (int i = 0; i < X_BOARD_SIZE && !nullFound; i++) {
-			for (int j = 0; j < Y_BOARD_SIZE && !nullFound; j++) {
+		for (int i = 0; i < ROW_BOARD_SIZE && !nullFound; i++) {
+			for (int j = 0; j < COLUMN_BOARD_SIZE && !nullFound; j++) {
 				if (tokens[i][j] == Token.NULL) {
 					nullFound = true;
 				}
@@ -59,20 +58,26 @@ public class Board {
 	public Boolean putToken(Token token, Integer column) {
 		int rowPosition = 0;
 		Boolean possibleRowFound = false;
-		for (int i = 0; i < X_BOARD_SIZE && !possibleRowFound; i++) {
-			if (tokens[i][column] == Token.NULL) {
-				possibleRowFound = true;
-				rowPosition = i;
+		
+		if(column >= 0 && column < COLUMN_BOARD_SIZE) {
+			for (int i = 0; i < ROW_BOARD_SIZE && !possibleRowFound; i++) {
+				if (tokens[i][column] == Token.NULL) {
+					possibleRowFound = true;
+					rowPosition = i;
+				}
+			}
+
+			if (!possibleRowFound) {
+				MessageWriter.println("\nInvalid position for token - There is no more space in that column!");
+			} else {
+				tokens[rowPosition][column] = token;
+				writeBoard();
 			}
 		}
-
-		if (!possibleRowFound) {
-			MessageWriter.println("Invalid position for token - There is no more space in that column!");
-		} else {
-			tokens[rowPosition][column] = token;
-			writeBoard();
+		else {
+			MessageWriter.println("\nInvalid position for token - That column doesn't exist!");
 		}
-
+		
 		return possibleRowFound;
 
 	}
@@ -83,8 +88,8 @@ public class Board {
 
 	private void writeBoard() {
 		writeTopBottomLines();
-		for (int i = X_BOARD_SIZE - 1; i >= 0; i--) {
-			for (int j = 0; j < Y_BOARD_SIZE; j++) {
+		for (int i = ROW_BOARD_SIZE - 1; i >= 0; i--) {
+			for (int j = 0; j < COLUMN_BOARD_SIZE; j++) {
 				MessageWriter.print("|");
 				MessageWriter.print(tokens[i][j].getPrintValue());
 				MessageWriter.print("|");
@@ -95,9 +100,13 @@ public class Board {
 	}
 
 	private void writeTopBottomLines() {
-		for (int i = 0; i < Y_BOARD_SIZE * 3; i++) {
+		for (int i = 0; i < COLUMN_BOARD_SIZE * 3; i++) {
 			MessageWriter.print("-");
 		}
 		MessageWriter.println("");
+	}
+	
+	public void writeGameBoardInfo() {
+		MessageWriter.println("The board size is " + COLUMN_BOARD_SIZE + " x " + ROW_BOARD_SIZE + ".\n");
 	}
 }

@@ -3,8 +3,6 @@ package connectFour;
 import java.util.ArrayList;
 import java.util.List;
 
-import connectFour.goals.MessageWriter;
-
 public class Turn {
 	static Integer PLAYER_NUMBER = 2;
 

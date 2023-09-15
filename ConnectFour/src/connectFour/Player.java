@@ -2,8 +2,6 @@ package connectFour;
 
 import java.util.Scanner;
 
-import connectFour.goals.MessageWriter;
-
 public class Player {
 	Scanner scanner;
 	Token token;
@@ -36,9 +34,16 @@ public class Player {
 	}
 
 	private Integer readColumn() {
-		Integer x;
-		MessageWriter.print("Introduce the column where the token ought to be put: ");
-		x = Integer.parseInt(scanner.nextLine()) - 1;
+		Integer x = null;
+		while (x == null) {
+			MessageWriter.print("Introduce the column where the token ought to be put: ");
+			try {
+				x = Integer.parseInt(scanner.nextLine()) - 1;
+			} catch (NumberFormatException e) {
+				MessageWriter.println("\nYou haven't introduced a valid number. Please try again.");
+			}
+		}
+		
 		
 		return x;
 	}
