@@ -36,7 +36,13 @@ public class Game {
     public void putToken(Coordinate coordinate) {
         this.turn.startPlayerTurn();
     }
-//
+
+    public void setToken(Coordinate coordinate) {
+    }
+
+   public void setLastPlacedCoordinate(Coordinate coordinate) {
+   }
+
 //    public Error getPutTokenError(Coordinate coordinate) {
 //        return this.turn.getPutTokenError(coordinate);
 //    }

@@ -1,17 +1,15 @@
 package connectFour.views;
 
-import connectFour.controllers.TokenController;
+import connectFour.models.Game;
 
-public class StartView {
+public class StartView extends WithGameView {
 
-   private TokenController tokenControler;
-   
-   StartView (TokenController tokenControler) {
-      this.tokenControler = tokenControler;
+   StartView(Game game) {
+      super(game);
    }
    
    public void interact () {
       new MessageView().writeln(Message.TITLE);
-      new BoardView().write(this.tokenControler);
+      new BoardView().write(this.game);
    }
 }

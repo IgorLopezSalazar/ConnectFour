@@ -75,11 +75,11 @@ public class Board {
 			} else {
 				tokens[rowPosition][column] = token;
 				writeBoard();
+				///////////----------------   hay que guardar el ultimo token que se ha puessto -----_---------------
 			}
 		} else {
 			MessageView.println("\nInvalid position for token - That column doesn't exist!");
 		}
-
 		return possibleRowFound;
 
 	}

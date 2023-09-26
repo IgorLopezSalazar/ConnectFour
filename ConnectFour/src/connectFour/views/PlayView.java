@@ -1,21 +1,19 @@
 package connectFour.views;
 
-import connectFour.controllers.PlayController;
+import connectFour.models.Game;
 
-public class PlayView {
-   
-   private PlayController playController;
-   
-   PlayView (PlayController playController) {
-      this.playController = playController;
+public class PlayView extends WithGameView {
+
+   PlayView(Game game) {
+      super(game);
    }
 
    public void interact() {
-      // do {
-      //    new PlayerView(this.playController).interact();
-      //    this.playController.next();
-      //    new BoardView().write(this.playController);
-      // } while (!this.playController.isTicTacToe());
-      // new MessageView().writeln(Message.PLAYER_WIN, this.playController.getToken());
+      do {
+         new PlayerView(this.game).interact();
+         this.game.switchPlayer();
+         new BoardView().write(this.game);
+      } while (!this.game.anyGoalCompleted());
+      new MessageView().writeln(Message.PLAYER_WIN, this.game.getActiveToken().getPrintValue());
    }
 }
