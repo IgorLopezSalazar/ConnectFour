@@ -10,10 +10,9 @@ public class MessageView {
 		System.out.println(message.toString());
 	}
 
-	void writeln(Message message, String player) {
-		assert message == Message.PLAYER_WIN;
-
-		System.out.println(message.toString().replaceAll("#player#", player));
+	void writeln(Message message, String token, Integer player) {
+		System.out.println(
+				message.toString().replaceAll("#player#", String.valueOf(player)).replaceAll("#token#", token));
 	}
-	
+
 }

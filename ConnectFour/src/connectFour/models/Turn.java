@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connectFour.types.Token;
-import connectFour.views.MessageView;
 
 public class Turn {
 	static Integer PLAYER_NUMBER = 2;
@@ -16,40 +15,22 @@ public class Turn {
 	public Turn(Board board) {
 		playerIndex = 0;
 		this.board = board;
-		Integer totalTokens = Board.COLUMN_BOARD_SIZE * Board.ROW_BOARD_SIZE;
 		players = new ArrayList<>();
 		for (int i = 1; i <= PLAYER_NUMBER; i++) {
-			players.add(new Player(Token.values()[i], board, totalTokens / PLAYER_NUMBER));
+			players.add(new Player(Token.values()[i], board));
 		}
-	}
-
-	public void startPlayerTurn() {
-		writeTurnStartMessage();
-		players.get(playerIndex).putToken();
-		writeGameFinishingMessage();
-	}
-
-	private void writeGameFinishingMessage() {
-		if (board.anyGoalCompleted()) {
-			///MessageView.println("Player " + (playerIndex + 1) + " (" + players.get(playerIndex).getToken() + ")"
-			///		+ " wins the game.");
-		} else if (board.isBoardCompleted()) {
-			///MessageView.println("The board is full. It is a tie.");
-		}
-
 	}
 
 	public void switchPlayer() {
 		playerIndex = (playerIndex + 1) % PLAYER_NUMBER;
 	}
-
-	private void writeTurnStartMessage() {
-		///MessageView.println("The turn of player " + (playerIndex + 1) + " (" + players.get(playerIndex).getToken()
-		///		+ ")" + " starts.");
-	}
 	
 	private Player getActivePlayer() {
         return this.players.get(this.playerIndex);
+    }
+	
+	public Integer getActivePlayerId() {
+        return this.playerIndex;
     }
 	
 	Token getActiveToken() {
@@ -57,6 +38,6 @@ public class Turn {
     }
 
 	public void reset() {
-
+		playerIndex = 0;
 	}
 }

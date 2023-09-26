@@ -20,6 +20,10 @@ public class Game {
     public void switchPlayer() {
         this.turn.switchPlayer();
     }
+    
+    public Integer getActivePlayerId() {
+    	return this.turn.getActivePlayerId() + 1;
+    }
 
     public Token getActiveToken() {
         return this.turn.getActiveToken();
@@ -29,33 +33,15 @@ public class Game {
         return this.board.getToken(coordinate);
     }
     
-    public boolean areAllTokensOnBoard() {
+    public boolean isBoardCompleted() {
         return this.board.isBoardCompleted();
     }
     
+    public boolean anyGoalCompleted() {
+    	return this.board.anyGoalCompleted();
+    }
+    
     public void putToken(Coordinate coordinate) {
-        this.turn.startPlayerTurn();
+        this.board.putToken(this.turn.getActiveToken(), coordinate);
     }
-
-    public void setToken(Coordinate coordinate) {
-    }
-
-   public void setLastPlacedCoordinate(Coordinate coordinate) {
-   }
-
-//    public Error getPutTokenError(Coordinate coordinate) {
-//        return this.turn.getPutTokenError(coordinate);
-//    }
-//
-//    public void moveToken(Coordinate origin, Coordinate target) {
-//        this.turn.moveToken(origin, target);
-//    }
-//
-//    public Error getOriginMoveTokenError(Coordinate coordinate) {
-//        return this.turn.getOriginMoveTokenError(coordinate);
-//    }
-//
-//    public Error getTargetMoveTokenError(Coordinate origin, Coordinate target) {
-//        return this.turn.getTargetMoveTokenError(origin, target);
-//    }
 }

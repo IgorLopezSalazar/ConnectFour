@@ -10,10 +10,9 @@ public class PlayerView extends WithGameView {
    }
 
    public void putToken() {
-      Coordinate coordinate;
-      coordinate = this.getCoordinate();
+	  new MessageView().writeln(Message.PLAYER_TURN, this.game.getActiveToken().name(), this.game.getActivePlayerId());
+      Coordinate coordinate = this.getCoordinate();
       this.game.putToken(coordinate);
-      this.game.setLastPlacedCoordinate(coordinate);
    }
 
    private Coordinate getCoordinate() {

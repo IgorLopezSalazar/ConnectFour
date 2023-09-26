@@ -1,7 +1,5 @@
 package connectFour.views;
 
-import java.util.Scanner;
-
 import connectFour.models.Board;
 import connectFour.models.Game;
 import connectFour.types.Coordinate;
@@ -20,7 +18,7 @@ public class CoordinateView extends WithGameView {
 		do {
 			column = awaitUntilValidColumn();
 			row = findValidRowForColumn(column);
-		} while (row != null);
+		} while (row == null);
 
 		return new Coordinate(row, column);
 	}
@@ -36,20 +34,18 @@ public class CoordinateView extends WithGameView {
 	}
 
 	private Integer readColumn() {
-		try (Scanner scanner = new Scanner(System.in)) {
-			Integer column = null;
-			do {
-				new MessageView().write(Message.ENTER_COLUMN_TO_PUT);
+		Integer column = null;
+		do {
+			new MessageView().write(Message.ENTER_COLUMN_TO_PUT);
 
-				try {
-					column = Integer.parseInt(scanner.nextLine()) - 1;
-				} catch (NumberFormatException e) {
-					new MessageView().write(Message.NO_VALID_CHARACTER);
-				}
-			} while (column == null);
+			try {
+				column = Integer.parseInt(new ReadView(game).readLine()) - 1;
+			} catch (NumberFormatException e) {
+				new MessageView().write(Message.NO_VALID_CHARACTER);
+			}
+		} while (column == null);
 
-			return column;
-		}
+		return column;
 	}
 
 	private Boolean checkColumnPossible(Integer column) {
@@ -58,7 +54,7 @@ public class CoordinateView extends WithGameView {
 		if (column >= 0 && column < Board.COLUMN_BOARD_SIZE) {
 			possible = true;
 		} else {
-			new MessageView().write(Message.NO_VALID_COLUMN);
+			new MessageView().writeln(Message.NO_VALID_COLUMN);
 		}
 
 		return possible;

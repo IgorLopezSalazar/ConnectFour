@@ -9,6 +9,8 @@ public class Goal {
 
 	public Goal(Coordinate startCoordinate, Direction direction) {
 		this.direction = direction;
+		
+		this.coordinates = new Coordinate[CONNECTED_TOKEN_GOAL];
 		coordinates[0] = startCoordinate;
 		Coordinate vectorial = direction.getVectorialDirection();
 		for (int i = 1; i < CONNECTED_TOKEN_GOAL; i++) {

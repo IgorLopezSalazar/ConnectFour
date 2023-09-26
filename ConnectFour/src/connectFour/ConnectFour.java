@@ -11,24 +11,16 @@ public class ConnectFour {
 		this.game = new Game();
         this.view = new View(this.game);
 	}
-
-	private void playGame() {
-		game.writeGameBoardInfo();
-		while (!board.anyGoalCompleted() && !board.isBoardCompleted()) {
-			turn.startPlayerTurn();
-			turn.switchPlayer();
-		}
-	}
+	
+	protected void play() {
+        do {
+            this.view.start();
+            this.view.play();
+        } while (this.view.resume());
+    }
 
 	public static void main(String[] args) {
 		ConnectFour connectFour = new ConnectFour();
-		connectFour.playGame();
+		connectFour.play();
 	}
-	
-//	protected void play() {
-//        do {
-//            this.view.start();
-//            this.view.play();
-//        } while (this.view.resume());
-//    }
 }
