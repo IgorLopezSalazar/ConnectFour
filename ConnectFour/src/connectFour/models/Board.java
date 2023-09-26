@@ -4,12 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import connectFour.types.Goal;
 import connectFour.types.Token;
-import connectFour.types.goals.Column;
-import connectFour.types.goals.Diagonal;
-import connectFour.types.goals.Goal;
-import connectFour.types.goals.InverseDiagonal;
-import connectFour.types.goals.Row;
 import connectFour.views.MessageWriter;
 
 public class Board {
@@ -28,10 +24,10 @@ public class Board {
 
 	private List<Goal> establishPossibleGoals() {
 		goals = new ArrayList<>();
-		goals.add(new Column(tokens));
-		goals.add(new Row(tokens));
-		goals.add(new Diagonal(tokens));
-		goals.add(new InverseDiagonal(tokens));
+//		goals.add(new Column(tokens));
+//		goals.add(new Row(tokens));
+//		goals.add(new Diagonal(tokens));
+//		goals.add(new InverseDiagonal(tokens));
 		return goals;
 	}
 
