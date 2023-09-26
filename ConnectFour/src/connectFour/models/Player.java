@@ -3,7 +3,7 @@ package connectFour.models;
 import java.util.Scanner;
 
 import connectFour.types.Token;
-import connectFour.views.MessageWriter;
+import connectFour.views.MessageView;
 
 public class Player {
 	Scanner scanner;
@@ -39,11 +39,11 @@ public class Player {
 	private Integer readColumn() {
 		Integer x = null;
 		while (x == null) {
-			MessageWriter.print("Introduce the column where the token ought to be put: ");
+			MessageView.print("Introduce the column where the token ought to be put: ");
 			try {
 				x = Integer.parseInt(scanner.nextLine()) - 1;
 			} catch (NumberFormatException e) {
-				MessageWriter.println("\nYou haven't introduced a valid number. Please try again.");
+				MessageView.println("\nYou haven't introduced a valid number. Please try again.");
 			}
 		}
 		

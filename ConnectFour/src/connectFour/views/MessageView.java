@@ -1,6 +1,6 @@
 package connectFour.views;
 
-public class MessageWriter {
+public class MessageView {
 	
 	public static void print(String stringToPrint) {
 		System.out.print(stringToPrint);

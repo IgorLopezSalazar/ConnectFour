@@ -7,7 +7,7 @@ import java.util.List;
 import connectFour.types.Coordinate;
 import connectFour.types.Goal;
 import connectFour.types.Token;
-import connectFour.views.MessageWriter;
+import connectFour.views.MessageView;
 
 public class Board {
 	static Integer ROW_BOARD_SIZE = 6;
@@ -60,13 +60,13 @@ public class Board {
 			}
 
 			if (!possibleRowFound) {
-				MessageWriter.println("\nInvalid position for token - There is no more space in that column!");
+				MessageView.println("\nInvalid position for token - There is no more space in that column!");
 			} else {
 				tokens[rowPosition][column] = token;
 				writeBoard();
 			}
 		} else {
-			MessageWriter.println("\nInvalid position for token - That column doesn't exist!");
+			MessageView.println("\nInvalid position for token - That column doesn't exist!");
 		}
 
 		return possibleRowFound;
@@ -77,24 +77,24 @@ public class Board {
 		writeTopBottomLines();
 		for (int i = ROW_BOARD_SIZE - 1; i >= 0; i--) {
 			for (int j = 0; j < COLUMN_BOARD_SIZE; j++) {
-				MessageWriter.print("|");
-				MessageWriter.print(tokens[i][j].getPrintValue());
-				MessageWriter.print("|");
+				MessageView.print("|");
+				MessageView.print(tokens[i][j].getPrintValue());
+				MessageView.print("|");
 			}
-			MessageWriter.println("");
+			MessageView.println("");
 		}
 		writeTopBottomLines();
 	}
 
 	private void writeTopBottomLines() {
 		for (int i = 0; i < COLUMN_BOARD_SIZE * 3; i++) {
-			MessageWriter.print("-");
+			MessageView.print("-");
 		}
-		MessageWriter.println("");
+		MessageView.println("");
 	}
 
 	public void writeGameBoardInfo() {
-		MessageWriter.println("The board size is " + COLUMN_BOARD_SIZE + " x " + ROW_BOARD_SIZE + ".\n");
+		MessageView.println("The board size is " + COLUMN_BOARD_SIZE + " x " + ROW_BOARD_SIZE + ".\n");
 	}
 	
 	public void reset() {
