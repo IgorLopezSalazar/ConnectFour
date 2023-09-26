@@ -1,11 +1,8 @@
 package connectFour.models;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import connectFour.types.Coordinate;
-import connectFour.types.Goal;
 import connectFour.types.Token;
 import connectFour.views.MessageView;
 
@@ -101,7 +98,7 @@ public class Board {
 		
 	}
 	
-	Token getColor(Coordinate coordinate) {
+	public Token getToken(Coordinate coordinate) {
 //        assert !coordinate.isNull();
 
         return this.tokens[coordinate.getRow()][coordinate.getColumn()];

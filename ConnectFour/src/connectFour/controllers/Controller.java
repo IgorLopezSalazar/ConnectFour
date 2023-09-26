@@ -11,7 +11,7 @@ public abstract class Controller {
 		this.game = game;
 	}
 
-//	public Token getToken(Coordinate coordinate) {
-//		return this.game.getToken(coordinate);
-//	}
+	public Token getToken(Coordinate coordinate) {
+		return this.game.getToken(coordinate);
+	}
 }

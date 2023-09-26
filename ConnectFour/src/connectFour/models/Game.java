@@ -25,21 +25,17 @@ public class Game {
         return this.turn.getActiveToken();
     }
 
-//    public boolean isTicTacToe() {
-//        return this.board.isTicTacToe(this.turn.getActiveColor());
-//    }
-//
-    public Token getColor(Coordinate coordinate) {
-        return this.board.getColor(coordinate);
+    public Token getToken(Coordinate coordinate) {
+        return this.board.getToken(coordinate);
     }
-//
-//    public boolean areAllTokensOnBoard() {
-//        return this.turn.areAllTokensOnBoard();
-//    }
-//
-//    public void putToken(Coordinate coordinate) {
-//        this.turn.putToken(coordinate);
-//    }
+    
+    public boolean areAllTokensOnBoard() {
+        return this.board.isBoardCompleted();
+    }
+    
+    public void putToken(Coordinate coordinate) {
+        this.turn.startPlayerTurn();
+    }
 //
 //    public Error getPutTokenError(Coordinate coordinate) {
 //        return this.turn.getPutTokenError(coordinate);

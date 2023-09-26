@@ -1,8 +1,10 @@
 package connectFour.types;
 
-public abstract class Goal {
+public class Goal {
 
-   public abstract Boolean checkGoalRule();
+   private Coordinate[] coordinates;
+   private Direction direction;
+   
    static final Integer CONNECTED_TOKEN_GOAL = 4;
 
 }

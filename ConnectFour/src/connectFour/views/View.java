@@ -21,13 +21,11 @@ public abstract class View {
    }
 
    public void play() {
-      return;
-      //this.playView.interact();
+      this.playView.interact();
    }
 
    public boolean resume() {
-      return false;
-      //this.resumeView.interact();
+      return this.resumeView.interact();
    }
 
 }

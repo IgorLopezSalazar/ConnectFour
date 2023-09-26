@@ -9,9 +9,11 @@ public class Player {
 	Scanner scanner;
 	Token token;
 	Board board;
+	Integer tokenAmount;
 
-	public Player(Token token, Board board) {
-		scanner =new Scanner(System.in);  
+	public Player(Token token, Board board, Integer tokenAmount) {
+		scanner =new Scanner(System.in);
+		this.tokenAmount = tokenAmount;
 		this.token = token;
 		this.board = board;
 	}
@@ -23,6 +25,10 @@ public class Player {
 			tokenPlaced = board.putToken(token, readColumn());
 		}	
 	}
+	
+	boolean areAllTokensOnBoard() {
+        return this.tokenAmount == 0;
+    }
 	
 	public Board getBoard() {
 		return board;

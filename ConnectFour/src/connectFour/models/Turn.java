@@ -16,9 +16,10 @@ public class Turn {
 	public Turn(Board board) {
 		playerIndex = 0;
 		this.board = board;
+		Integer totalTokens = Board.COLUMN_BOARD_SIZE * Board.ROW_BOARD_SIZE;
 		players = new ArrayList<>();
 		for (int i = 1; i <= PLAYER_NUMBER; i++) {
-			players.add(new Player(Token.values()[i], board));
+			players.add(new Player(Token.values()[i], board, totalTokens / PLAYER_NUMBER));
 		}
 	}
 
