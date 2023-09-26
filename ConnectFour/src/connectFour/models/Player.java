@@ -12,7 +12,7 @@ public class Player {
 	Integer tokenAmount;
 
 	public Player(Token token, Board board, Integer tokenAmount) {
-		scanner =new Scanner(System.in);
+		scanner =new Scanner(System.in);  
 		this.tokenAmount = tokenAmount;
 		this.token = token;
 		this.board = board;
@@ -45,11 +45,11 @@ public class Player {
 	private Integer readColumn() {
 		Integer x = null;
 		while (x == null) {
-			MessageView.print("Introduce the column where the token ought to be put: ");
+			///MessageView.print("Introduce the column where the token ought to be put: ");
 			try {
 				x = Integer.parseInt(scanner.nextLine()) - 1;
 			} catch (NumberFormatException e) {
-				MessageView.println("\nYou haven't introduced a valid number. Please try again.");
+				///MessageView.println("\nYou haven't introduced a valid number. Please try again.");
 			}
 		}
 		

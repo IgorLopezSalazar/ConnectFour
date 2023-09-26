@@ -31,10 +31,10 @@ public class Turn {
 
 	private void writeGameFinishingMessage() {
 		if (board.isGoalCompleted()) {
-			MessageView.println("Player " + (playerIndex + 1) + " (" + players.get(playerIndex).getToken() + ")"
-					+ " wins the game.");
+			///MessageView.println("Player " + (playerIndex + 1) + " (" + players.get(playerIndex).getToken() + ")"
+			///		+ " wins the game.");
 		} else if (board.isBoardCompleted()) {
-			MessageView.println("The board is full. It is a tie.");
+			///MessageView.println("The board is full. It is a tie.");
 		}
 
 	}
@@ -44,8 +44,8 @@ public class Turn {
 	}
 
 	private void writeTurnStartMessage() {
-		MessageView.println("The turn of player " + (playerIndex + 1) + " (" + players.get(playerIndex).getToken()
-				+ ")" + " starts.");
+		///MessageView.println("The turn of player " + (playerIndex + 1) + " (" + players.get(playerIndex).getToken()
+		///		+ ")" + " starts.");
 	}
 	
 	private Player getActivePlayer() {
