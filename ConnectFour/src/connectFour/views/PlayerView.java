@@ -9,27 +9,14 @@ public class PlayerView extends WithGameView {
       super(game);
    }
 
-   void interact() {
-      if (!this.game.areAllTokensOnBoard()) {
-         this.putToken();
-      } else {
-         this.gasdasda;
-      }
-   }
-
-   private void putToken() {
+   public void putToken() {
       Coordinate coordinate;
-      Error error;
-      do {
-         coordinate = this.getCoordinate();
-         error = this.getPutTokenError(coordinate);
-      } while (!error.isNull());
+      coordinate = this.getCoordinate();
       this.game.putToken(coordinate);
+      this.game.setLastPlacedCoordinate(coordinate);
    }
 
    private Coordinate getCoordinate() {
-      assert message != null;
-
       return new CoordinateView(this.game).read();
-  }
+   }
 }

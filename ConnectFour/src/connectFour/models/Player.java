@@ -27,7 +27,7 @@ public class Player {
 	}
 	
 	boolean areAllTokensOnBoard() {
-        return this.tokenAmount == 0;
+      return this.tokenAmount == 0;
     }
 	
 	public Board getBoard() {

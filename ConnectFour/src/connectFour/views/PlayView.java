@@ -10,10 +10,16 @@ public class PlayView extends WithGameView {
 
    public void interact() {
       do {
-         new PlayerView(this.game).interact();
+         new PlayerView(this.game).putToken();
          this.game.switchPlayer();
          new BoardView().write(this.game);
-      } while (!this.game.anyGoalCompleted());
-      new MessageView().writeln(Message.PLAYER_WIN, this.game.getActiveToken().getPrintValue());
+      } while (!this.game.anyGoalCompleted() && this.game.areAllTokensOnBoard());
+
+      if (this.game.anyGoalCompleted()) {
+         new MessageView().writeln(Message.PLAYER_WIN, this.game.getActiveToken().getPrintValue());
+      } 
+      else {
+         new MessageView().writeln(Message.BOARD_FULL);
+      }
    }
 }
