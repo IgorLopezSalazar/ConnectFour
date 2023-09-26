@@ -1,5 +1,8 @@
 package connectFour;
 
+import connectFour.models.Board;
+import connectFour.models.Turn;
+
 public class ConnectFour {
 	Turn turn;
 	Board board;

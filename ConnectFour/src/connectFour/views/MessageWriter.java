@@ -1,4 +1,4 @@
-package connectFour;
+package connectFour.views;
 
 public class MessageWriter {
 	

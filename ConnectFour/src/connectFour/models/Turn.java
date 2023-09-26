@@ -1,7 +1,10 @@
-package connectFour;
+package connectFour.models;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import connectFour.types.Token;
+import connectFour.views.MessageWriter;
 
 public class Turn {
 	static Integer PLAYER_NUMBER = 2;
@@ -10,7 +13,7 @@ public class Turn {
 	List<Player> players;
 	private Integer playerIndex;
 
-	Turn(Board board) {
+	public Turn(Board board) {
 		playerIndex = 0;
 		this.board = board;
 		players = new ArrayList<>();

@@ -1,14 +1,16 @@
-package connectFour;
+package connectFour.models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import connectFour.goals.Column;
-import connectFour.goals.Diagonal;
-import connectFour.goals.Goal;
-import connectFour.goals.InverseDiagonal;
-import connectFour.goals.Row;
+import connectFour.types.Token;
+import connectFour.types.goals.Column;
+import connectFour.types.goals.Diagonal;
+import connectFour.types.goals.Goal;
+import connectFour.types.goals.InverseDiagonal;
+import connectFour.types.goals.Row;
+import connectFour.views.MessageWriter;
 
 public class Board {
 	static Integer ROW_BOARD_SIZE = 6;
@@ -16,7 +18,7 @@ public class Board {
 	List<Goal> goals;
 	Token[][] tokens;
 
-	Board() {
+	public Board() {
 		tokens = new Token[ROW_BOARD_SIZE][COLUMN_BOARD_SIZE];
 		for (int i = 0; i < ROW_BOARD_SIZE; i++) {
 			Arrays.fill(tokens[i], Token.NULL);
@@ -58,8 +60,8 @@ public class Board {
 	public Boolean putToken(Token token, Integer column) {
 		int rowPosition = 0;
 		Boolean possibleRowFound = false;
-		
-		if(column >= 0 && column < COLUMN_BOARD_SIZE) {
+
+		if (column >= 0 && column < COLUMN_BOARD_SIZE) {
 			for (int i = 0; i < ROW_BOARD_SIZE && !possibleRowFound; i++) {
 				if (tokens[i][column] == Token.NULL) {
 					possibleRowFound = true;
@@ -73,11 +75,10 @@ public class Board {
 				tokens[rowPosition][column] = token;
 				writeBoard();
 			}
-		}
-		else {
+		} else {
 			MessageWriter.println("\nInvalid position for token - That column doesn't exist!");
 		}
-		
+
 		return possibleRowFound;
 
 	}
@@ -105,7 +106,7 @@ public class Board {
 		}
 		MessageWriter.println("");
 	}
-	
+
 	public void writeGameBoardInfo() {
 		MessageWriter.println("The board size is " + COLUMN_BOARD_SIZE + " x " + ROW_BOARD_SIZE + ".\n");
 	}

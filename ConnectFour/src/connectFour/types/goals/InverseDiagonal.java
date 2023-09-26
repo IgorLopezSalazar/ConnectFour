@@ -1,12 +1,12 @@
-package connectFour.goals;
+package connectFour.types.goals;
 
-import connectFour.Token;
+import connectFour.types.Token;
 
-public class Diagonal extends Goal {
+public class InverseDiagonal extends Goal {
 
    private Token tokens[][];
 
-   public Diagonal(Token tokens[][]) {
+   public InverseDiagonal(Token tokens[][]) {
       this.tokens = tokens;
    }
 
@@ -31,7 +31,7 @@ public class Diagonal extends Goal {
       Boolean possible = false;
 
       if (row - (CONNECTED_TOKEN_GOAL - 1) >= 0) {
-         if (column + (CONNECTED_TOKEN_GOAL - 1) < tokens[0].length) {
+         if (column - (CONNECTED_TOKEN_GOAL - 1) >= 0) {
             possible = true;
          }
       }
@@ -45,7 +45,7 @@ public class Diagonal extends Goal {
       Token newToken = null;
 
       for (int i = 0; i < CONNECTED_TOKEN_GOAL && achieved; i++) {
-         newToken = tokens[row - i][column + i];
+         newToken = tokens[row - i][column - i];
                
          if (!newToken.equals(Token.NULL)) {
             if (i != 0 && !newToken.equals(previousToken)) {

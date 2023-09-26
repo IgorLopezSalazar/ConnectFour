@@ -1,4 +1,4 @@
-package connectFour.goals;
+package connectFour.types.goals;
 
 public abstract class Goal {
 

@@ -1,6 +1,6 @@
-package connectFour.goals;
+package connectFour.types.goals;
 
-import connectFour.Token;
+import connectFour.types.Token;
 
 public class Row extends Goal {
 

@@ -1,4 +1,4 @@
-package connectFour;
+package connectFour.types;
 
 public enum Token {
 
