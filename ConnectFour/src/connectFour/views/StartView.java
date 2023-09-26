@@ -11,7 +11,7 @@ public class StartView {
    }
    
    public void interact () {
-      //new MessageView().writeln(Message.TITLE);
-      //new BoardView().write(this.tokenControler);
+      new MessageView().writeln(Message.TITLE);
+      new BoardView().write(this.tokenControler);
    }
 }

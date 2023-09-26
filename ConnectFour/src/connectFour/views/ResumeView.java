@@ -9,4 +9,9 @@ public class ResumeView {
    ResumeView (ResumeController resumeController) {
       this.resumeController = resumeController;
    }   
+
+   public boolean interact() {
+      return false;
+
+   }
 }

@@ -1,13 +1,19 @@
 package connectFour.views;
 
 public class MessageView {
-	
-	public static void print(String stringToPrint) {
-		System.out.print(stringToPrint);
-		
+
+	void write(Message message) {
+		System.out.print(message.toString());
 	}
 
-	public static void println(String stringToPrint) {
-		System.out.println(stringToPrint);
+	void writeln(Message message) {
+		System.out.println(message.toString());
 	}
+
+	void writeln(Message message, String player) {
+		assert message == Message.PLAYER_WIN;
+
+		System.out.println(message.toString().replaceAll("#player#", player));
+	}
+	
 }

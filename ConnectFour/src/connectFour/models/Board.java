@@ -70,29 +70,29 @@ public class Board {
 
 	}
 
-	private void writeBoard() {
-		writeTopBottomLines();
-		for (int i = ROW_BOARD_SIZE - 1; i >= 0; i--) {
-			for (int j = 0; j < COLUMN_BOARD_SIZE; j++) {
-				MessageView.print("|");
-				MessageView.print(tokens[i][j].getPrintValue());
-				MessageView.print("|");
-			}
-			MessageView.println("");
-		}
-		writeTopBottomLines();
-	}
+	// private void writeBoard() {
+	// 	writeTopBottomLines();
+	// 	for (int i = ROW_BOARD_SIZE - 1; i >= 0; i--) {
+	// 		for (int j = 0; j < COLUMN_BOARD_SIZE; j++) {
+	// 			MessageView.print("|");
+	// 			MessageView.print(tokens[i][j].getPrintValue());
+	// 			MessageView.print("|");
+	// 		}
+	// 		MessageView.println("");
+	// 	}
+	// 	writeTopBottomLines();
+	// }
 
-	private void writeTopBottomLines() {
-		for (int i = 0; i < COLUMN_BOARD_SIZE * 3; i++) {
-			MessageView.print("-");
-		}
-		MessageView.println("");
-	}
+	// private void writeTopBottomLines() {
+	// 	for (int i = 0; i < COLUMN_BOARD_SIZE * 3; i++) {
+	// 		MessageView.print("-");
+	// 	}
+	// 	MessageView.println("");
+	// }
 
-	public void writeGameBoardInfo() {
-		MessageView.println("The board size is " + COLUMN_BOARD_SIZE + " x " + ROW_BOARD_SIZE + ".\n");
-	}
+	// public void writeGameBoardInfo() {
+	// 	MessageView.println("The board size is " + COLUMN_BOARD_SIZE + " x " + ROW_BOARD_SIZE + ".\n");
+	// }
 	
 	public void reset() {
 		
