@@ -37,8 +37,13 @@ public class Board {
 	public Boolean checkGoalCompletion(Goal goal) {
 		Boolean goalAchieved = false;
 		for (int i = 0; i < Goal.CONNECTED_TOKEN_GOAL && !goalAchieved; i++) {
-			goalAchieved = Arrays.stream(goal.getCoordinates()).map(coord -> this.getToken(coord)).distinct()
-					.filter(token -> token != Token.NULL).count() == 1;
+			Boolean goalOutsideBoard = Arrays.stream(goal.getCoordinates())
+					.anyMatch(coord -> !coordinateInsideBoard(coord));
+			if (goalOutsideBoard) {
+				goalAchieved = Arrays.stream(goal.getCoordinates()).map(coord -> this.getToken(coord)).distinct()
+						.count() == 1;
+			}
+
 			goal.iterateCoordinates();
 		}
 		return goalAchieved;
@@ -75,7 +80,8 @@ public class Board {
 			} else {
 				tokens[rowPosition][column] = token;
 				writeBoard();
-				///////////----------------   hay que guardar el ultimo token que se ha puessto -----_---------------
+				/////////// ---------------- hay que guardar el ultimo token que se ha puessto
+				/////////// -----_---------------
 			}
 		} else {
 			MessageView.println("\nInvalid position for token - That column doesn't exist!");
@@ -115,5 +121,10 @@ public class Board {
 
 	public Token getToken(Coordinate coordinate) {
 		return this.tokens[coordinate.getRow()][coordinate.getColumn()];
+	}
+
+	public boolean coordinateInsideBoard(Coordinate coordinate) {
+		return (coordinate.getRow() >= 0 && coordinate.getRow() < Board.ROW_BOARD_SIZE)
+				&& (coordinate.getColumn() >= 0 && coordinate.getColumn() < Board.COLUMN_BOARD_SIZE);
 	}
 }

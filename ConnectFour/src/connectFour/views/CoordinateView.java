@@ -1,6 +1,5 @@
 package connectFour.views;
 
-import java.io.Console;
 import java.util.Scanner;
 
 import connectFour.models.Board;
@@ -10,80 +9,74 @@ import connectFour.types.Token;
 
 public class CoordinateView extends WithGameView {
 
-   CoordinateView(Game game) {
-      super(game);
-   }
-
-   public Coordinate read() {
-      boolean correct;
-      Coordinate coordinate;
-      Integer column;
-
-      do {
-         coordinate = this.calculateCoordinate(this.readColumn());
-         correct = this.setToken(coordinate);         
-      } while (correct);
-      return squareBoundedCoordinate;
-   }
-
-   private Integer readColumn() {
-      try (Scanner scanner = new Scanner(System.in)) {
-         Integer column = null;
-         Integer tmpColumn = null;
-         do {
-            new MessageView().write(Message.ENTER_COLUMN_TO_PUT);
-            
-            try {
-               tmpColumn = Integer.parseInt(scanner.nextLine()) - 1;
-            } catch (NumberFormatException e) {
-               new MessageView().write(Message.NO_VALID_CHARACTER);
-            }
-
-            if (checkColumnPossible(tmpColumn)) {
-               column = tmpColumn;
-            }
-         } while (column == null);
-
-         return column;
-      }
+	CoordinateView(Game game) {
+		super(game);
 	}
 
-   private Boolean checkColumnPossible(Integer column) {
-      Boolean possible  = false;
+	public Coordinate read() {
+		Integer row;
+		Integer column;
+		
+		do {
+			column = awaitUntilValidColumn();
+			row = findValidRowForColumn(column);
+		} while (row != null);
 
-      if (column >= 0 && column < Board.COLUMN_BOARD_SIZE) {
-            possible = true;
-         }
-      else {
-         new MessageView().write(Message.NO_VALID_COLUMN);
-      }
+		return new Coordinate(row, column);
+	}
 
-      return possible;
-   }
+	private Integer awaitUntilValidColumn() {
+		Integer column;
 
-   private Coordinate calculateCoordinate(Integer column) {
-      Integer rowPosition = null;
-      Coordinate coordinate = null;
+		do {
+			column = this.readColumn();
+		} while (!checkColumnPossible(column));
+		
+		return column;
+	}
 
-			for (int i = 0; i < Board.ROW_BOARD_SIZE; i++) {
-				if (game.getToken(new Coordinate(i, column)) == Token.NULL) {
-					rowPosition = i;
-               coordinate = new Coordinate(rowPosition, column);
+	private Integer readColumn() {
+		try (Scanner scanner = new Scanner(System.in)) {
+			Integer column = null;
+			do {
+				new MessageView().write(Message.ENTER_COLUMN_TO_PUT);
+
+				try {
+					column = Integer.parseInt(scanner.nextLine()) - 1;
+				} catch (NumberFormatException e) {
+					new MessageView().write(Message.NO_VALID_CHARACTER);
 				}
-			}
+			} while (column == null);
 
-		return coordinate;
-   }
-
-   private boolean setToken(Coordinate coordinate) {
-      boolean correct = coordinate != null;
-      if (correct) {
-			game.setToken(coordinate);
-         game.setLastPlacedCoordinate(coordinate);
-         
-		} else {
-         new MessageView().write(Message.NO_SPACE_IN_COLUMN);
+			return column;
 		}
-      return correct;
-   }
+	}
+
+	private Boolean checkColumnPossible(Integer column) {
+		Boolean possible = false;
+
+		if (column >= 0 && column < Board.COLUMN_BOARD_SIZE) {
+			possible = true;
+		} else {
+			new MessageView().write(Message.NO_VALID_COLUMN);
+		}
+
+		return possible;
+	}
+
+	private Integer findValidRowForColumn(Integer column) {
+		Integer rowPosition = null;
+
+		for (int i = 0; i < Board.ROW_BOARD_SIZE; i++) {
+			if (game.getToken(new Coordinate(i, column)) == Token.NULL) {
+				rowPosition = i;
+			}
+		}
+		
+		if(rowPosition == null) {
+			new MessageView().write(Message.NO_SPACE_IN_COLUMN);
+		}
+
+		return rowPosition;
+	}
 }

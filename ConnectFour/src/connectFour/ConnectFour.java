@@ -1,26 +1,15 @@
 package connectFour;
 
-import connectFour.controllers.PlayController;
-import connectFour.controllers.ResumeController;
-import connectFour.controllers.TokenController;
-import connectFour.models.Board;
 import connectFour.models.Game;
-import connectFour.models.Turn;
 import connectFour.views.View;
 
 public class ConnectFour {
 	private Game game;
     private View view;
-    protected TokenController startController;
-    protected PlayController playController;
-    protected ResumeController resumeController;
 
 	ConnectFour() {
 		this.game = new Game();
-        this.startController = new TokenController(this.game);
-        this.playController = new PlayController(this.game);
-        this.resumeController = new ResumeController(this.game);
-        this.view = new View(this.startController, this.playController, this.resumeController);
+        this.view = new View(this.game);
 	}
 
 	private void playGame() {

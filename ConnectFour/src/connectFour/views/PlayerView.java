@@ -13,7 +13,7 @@ public class PlayerView extends WithGameView {
       if (!this.game.areAllTokensOnBoard()) {
          this.putToken();
       } else {
-         this.gasdasda
+         this.gasdasda;
       }
    }
 
