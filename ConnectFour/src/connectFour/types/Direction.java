@@ -3,8 +3,8 @@ package connectFour.types;
 public enum Direction {
 	NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST;
 	
-	public Coordinate getVectorialDirection(Direction direction) {
-		switch (direction) {
+	public Coordinate getVectorialDirection() {
+		switch (this) {
 		case NORTH: {
 			return new Coordinate(0, 1);
 		}
@@ -30,7 +30,12 @@ public enum Direction {
 			return new Coordinate(-1, 1);
 		}
 		default:
-			throw new IllegalArgumentException("Unexpected value: " + direction);
+			throw new IllegalArgumentException();
 		}
+	}
+	
+	public Coordinate getInverseVectorial() {
+		Coordinate coordinate = this.getVectorialDirection();
+		return new Coordinate(-coordinate.getRow(), -coordinate.getColumn());
 	}
 }

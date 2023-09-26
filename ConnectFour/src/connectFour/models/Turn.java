@@ -30,7 +30,7 @@ public class Turn {
 	}
 
 	private void writeGameFinishingMessage() {
-		if (board.isGoalCompleted()) {
+		if (board.anyGoalCompleted()) {
 			///MessageView.println("Player " + (playerIndex + 1) + " (" + players.get(playerIndex).getToken() + ")"
 			///		+ " wins the game.");
 		} else if (board.isBoardCompleted()) {

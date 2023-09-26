@@ -25,7 +25,7 @@ public class ConnectFour {
 
 	private void playGame() {
 		game.writeGameBoardInfo();
-		while (!board.isGoalCompleted() && !board.isBoardCompleted()) {
+		while (!board.anyGoalCompleted() && !board.isBoardCompleted()) {
 			turn.startPlayerTurn();
 			turn.switchPlayer();
 		}

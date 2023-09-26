@@ -25,4 +25,8 @@ public class Coordinate {
 		this.column = column;
 	}
 
+	public void displaceCoordinate(Coordinate coordinate) {
+		this.row = this.row + coordinate.getRow();
+		this.column = this.column + coordinate.getColumn();
+	}
 }

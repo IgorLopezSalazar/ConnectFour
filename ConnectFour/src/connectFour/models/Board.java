@@ -3,31 +3,45 @@ package connectFour.models;
 import java.util.Arrays;
 
 import connectFour.types.Coordinate;
+import connectFour.types.Direction;
+import connectFour.types.Goal;
 import connectFour.types.Token;
 import connectFour.views.MessageView;
 
 public class Board {
-	static Integer ROW_BOARD_SIZE = 6;
-	static Integer COLUMN_BOARD_SIZE = 7;
+	public static Integer ROW_BOARD_SIZE = 6;
+	public static Integer COLUMN_BOARD_SIZE = 7;
 	Token[][] tokens;
+	private Coordinate lastPlacedCoordinate;
 
 	public Board() {
 		tokens = new Token[ROW_BOARD_SIZE][COLUMN_BOARD_SIZE];
 		this.initializeBoard();
 	}
-	
+
 	private void initializeBoard() {
 		for (int i = 0; i < ROW_BOARD_SIZE; i++) {
 			Arrays.fill(tokens[i], Token.NULL);
 		}
 	}
 
-	public Boolean isGoalCompleted() {
+	public Boolean anyGoalCompleted() {
 		Boolean anyGoalCompleted = false;
-//		for (Goal goal : goals) {
-//			anyGoalCompleted = anyGoalCompleted || goal.checkGoalRule();
-//		}
+		for (Direction direction : Direction.values()) {
+			Goal goal = new Goal(lastPlacedCoordinate, direction);
+			anyGoalCompleted = anyGoalCompleted || checkGoalCompletion(goal);
+		}
 		return anyGoalCompleted;
+	}
+
+	public Boolean checkGoalCompletion(Goal goal) {
+		Boolean goalAchieved = false;
+		for (int i = 0; i < Goal.CONNECTED_TOKEN_GOAL && !goalAchieved; i++) {
+			goalAchieved = Arrays.stream(goal.getCoordinates()).map(coord -> this.getToken(coord)).distinct()
+					.filter(token -> token != Token.NULL).count() == 1;
+			goal.iterateCoordinates();
+		}
+		return goalAchieved;
 	}
 
 	public Boolean isBoardCompleted() {
@@ -71,36 +85,35 @@ public class Board {
 	}
 
 	// private void writeBoard() {
-	// 	writeTopBottomLines();
-	// 	for (int i = ROW_BOARD_SIZE - 1; i >= 0; i--) {
-	// 		for (int j = 0; j < COLUMN_BOARD_SIZE; j++) {
-	// 			MessageView.print("|");
-	// 			MessageView.print(tokens[i][j].getPrintValue());
-	// 			MessageView.print("|");
-	// 		}
-	// 		MessageView.println("");
-	// 	}
-	// 	writeTopBottomLines();
+	// writeTopBottomLines();
+	// for (int i = ROW_BOARD_SIZE - 1; i >= 0; i--) {
+	// for (int j = 0; j < COLUMN_BOARD_SIZE; j++) {
+	// MessageView.print("|");
+	// MessageView.print(tokens[i][j].getPrintValue());
+	// MessageView.print("|");
+	// }
+	// MessageView.println("");
+	// }
+	// writeTopBottomLines();
 	// }
 
 	// private void writeTopBottomLines() {
-	// 	for (int i = 0; i < COLUMN_BOARD_SIZE * 3; i++) {
-	// 		MessageView.print("-");
-	// 	}
-	// 	MessageView.println("");
+	// for (int i = 0; i < COLUMN_BOARD_SIZE * 3; i++) {
+	// MessageView.print("-");
+	// }
+	// MessageView.println("");
 	// }
 
 	// public void writeGameBoardInfo() {
-	// 	MessageView.println("The board size is " + COLUMN_BOARD_SIZE + " x " + ROW_BOARD_SIZE + ".\n");
+	// MessageView.println("The board size is " + COLUMN_BOARD_SIZE + " x " +
+	// ROW_BOARD_SIZE + ".\n");
 	// }
-	
-	public void reset() {
-		
-	}
-	
-	public Token getToken(Coordinate coordinate) {
-//        assert !coordinate.isNull();
 
-        return this.tokens[coordinate.getRow()][coordinate.getColumn()];
-    }
+	public void reset() {
+
+	}
+
+	public Token getToken(Coordinate coordinate) {
+		return this.tokens[coordinate.getRow()][coordinate.getColumn()];
+	}
 }
