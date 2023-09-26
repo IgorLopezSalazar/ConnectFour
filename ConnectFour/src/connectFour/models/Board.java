@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import connectFour.types.Coordinate;
 import connectFour.types.Goal;
 import connectFour.types.Token;
 import connectFour.views.MessageWriter;
@@ -11,31 +12,24 @@ import connectFour.views.MessageWriter;
 public class Board {
 	static Integer ROW_BOARD_SIZE = 6;
 	static Integer COLUMN_BOARD_SIZE = 7;
-	List<Goal> goals;
 	Token[][] tokens;
 
 	public Board() {
 		tokens = new Token[ROW_BOARD_SIZE][COLUMN_BOARD_SIZE];
+		this.initializeBoard();
+	}
+	
+	private void initializeBoard() {
 		for (int i = 0; i < ROW_BOARD_SIZE; i++) {
 			Arrays.fill(tokens[i], Token.NULL);
 		}
-		establishPossibleGoals();
-	}
-
-	private List<Goal> establishPossibleGoals() {
-		goals = new ArrayList<>();
-//		goals.add(new Column(tokens));
-//		goals.add(new Row(tokens));
-//		goals.add(new Diagonal(tokens));
-//		goals.add(new InverseDiagonal(tokens));
-		return goals;
 	}
 
 	public Boolean isGoalCompleted() {
 		Boolean anyGoalCompleted = false;
-		for (Goal goal : goals) {
-			anyGoalCompleted = anyGoalCompleted || goal.checkGoalRule();
-		}
+//		for (Goal goal : goals) {
+//			anyGoalCompleted = anyGoalCompleted || goal.checkGoalRule();
+//		}
 		return anyGoalCompleted;
 	}
 
@@ -79,10 +73,6 @@ public class Board {
 
 	}
 
-	public Token[][] getTokens() {
-		return tokens;
-	}
-
 	private void writeBoard() {
 		writeTopBottomLines();
 		for (int i = ROW_BOARD_SIZE - 1; i >= 0; i--) {
@@ -106,4 +96,14 @@ public class Board {
 	public void writeGameBoardInfo() {
 		MessageWriter.println("The board size is " + COLUMN_BOARD_SIZE + " x " + ROW_BOARD_SIZE + ".\n");
 	}
+	
+	public void reset() {
+		
+	}
+	
+	Token getColor(Coordinate coordinate) {
+//        assert !coordinate.isNull();
+
+        return this.tokens[coordinate.getRow()][coordinate.getColumn()];
+    }
 }

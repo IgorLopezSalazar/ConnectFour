@@ -46,4 +46,16 @@ public class Turn {
 		MessageWriter.println("The turn of player " + (playerIndex + 1) + " (" + players.get(playerIndex).getToken()
 				+ ")" + " starts.");
 	}
+	
+	private Player getActivePlayer() {
+        return this.players.get(this.playerIndex);
+    }
+	
+	Token getActiveToken() {
+        return this.getActivePlayer().getToken();
+    }
+
+	public void reset() {
+
+	}
 }
