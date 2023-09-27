@@ -41,7 +41,7 @@ public class CoordinateView extends WithGameView {
 			try {
 				column = Integer.parseInt(new ReadView(game).readLine()) - 1;
 			} catch (NumberFormatException e) {
-				new MessageView().write(Message.NO_VALID_CHARACTER);
+				new MessageView().writeln(Message.NO_VALID_CHARACTER);
 			}
 		} while (column == null);
 
@@ -70,7 +70,7 @@ public class CoordinateView extends WithGameView {
 		}
 		
 		if(rowPosition == null) {
-			new MessageView().write(Message.NO_SPACE_IN_COLUMN);
+			new MessageView().writeln(Message.NO_SPACE_IN_COLUMN);
 		}
 
 		return rowPosition;
