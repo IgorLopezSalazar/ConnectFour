@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import connectFour.types.Coordinate;
 import connectFour.types.Direction;
-import connectFour.types.Goal;
+import connectFour.types.Line;
 import connectFour.types.Token;
 
 public class Board {
@@ -24,28 +24,39 @@ public class Board {
 		}
 	}
 
-	public Boolean anyGoalCompleted() {
-		Boolean anyGoalCompleted = false;
+	public Boolean anyLineCompleted() {
+		assert tokens[lastPlacedCoordinate.getRow()][lastPlacedCoordinate.getColumn()] != Token.NULL;
+
+		Boolean anyLineCompleted = false;
 		for (Direction direction : Direction.values()) {
-			Goal goal = new Goal(new Coordinate(lastPlacedCoordinate.getRow(), lastPlacedCoordinate.getColumn()), direction);
-			anyGoalCompleted = anyGoalCompleted || checkGoalCompletion(goal);
+			Line line = new Line(new Coordinate(lastPlacedCoordinate.getRow(), lastPlacedCoordinate.getColumn()), direction);
+			anyLineCompleted = anyLineCompleted || checkLineCompletion(line);
 		}
-		return anyGoalCompleted;
+		return anyLineCompleted;
 	}
 
-	public Boolean checkGoalCompletion(Goal goal) {
-		Boolean goalAchieved = false;
-		for (int i = 0; i < Goal.CONNECTED_TOKEN_GOAL && !goalAchieved; i++) {
-			Boolean goalOutsideBoard = Arrays.stream(goal.getCoordinates())
-					.anyMatch(coord -> !coordinateInsideBoard(coord));
-			if (!goalOutsideBoard) {
-				goalAchieved = Arrays.stream(goal.getCoordinates()).map(coord -> this.getToken(coord)).distinct()
-						.count() == 1;
+	private Boolean checkLineCompletion(Line line) {
+		Boolean lineAchieved = false;
+		for (int i = 0; i < Line.CONNECTED_TOKEN_LINE && !lineAchieved; i++) {
+			Boolean lineOutsideBoard = checkLineOutsideBoard(line);
+			if (!lineOutsideBoard) {
+				lineAchieved = checkSameTokenInLine(line);
 			}
-
-			goal.iterateCoordinates();
+			line.iterateCoordinates();
 		}
-		return goalAchieved;
+		return lineAchieved;
+	}
+
+	private Boolean checkLineOutsideBoard(Line line) {
+		return Arrays.stream(line.getCoordinates())
+					.anyMatch(coord -> !coordinateInsideBoard(coord));
+	}
+
+	private Boolean checkSameTokenInLine(Line line) {
+		return Arrays.stream(line.getCoordinates())
+					.map(coord -> this.getToken(coord))
+					.distinct()
+					.count() == 1;
 	}
 
 	public Boolean isBoardCompleted() {
@@ -65,7 +76,6 @@ public class Board {
 	public void putToken(Token token, Coordinate coordinate) {
 		tokens[coordinate.getRow()][coordinate.getColumn()] = token;
 		lastPlacedCoordinate = coordinate;
-
 	}
 
 	public void reset() {
@@ -76,7 +86,7 @@ public class Board {
 		return this.tokens[coordinate.getRow()][coordinate.getColumn()];
 	}
 
-	public boolean coordinateInsideBoard(Coordinate coordinate) {
+	private boolean coordinateInsideBoard(Coordinate coordinate) {
 		return (coordinate.getRow() >= 0 && coordinate.getRow() < Board.ROW_BOARD_SIZE)
 				&& (coordinate.getColumn() >= 0 && coordinate.getColumn() < Board.COLUMN_BOARD_SIZE);
 	}

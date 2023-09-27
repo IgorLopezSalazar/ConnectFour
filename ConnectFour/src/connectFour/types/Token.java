@@ -13,17 +13,4 @@ public enum Token {
 	public String getPrintValue() {
 		return printValue;
 	}
-
-	public Token get(Integer index) {
-		Token resultToken = null;
-
-		for (Token token : Token.values()) {
-			if (token.ordinal() == index) {
-				resultToken = token;
-			}
-		}
-
-		return resultToken;
-	}
-
 }

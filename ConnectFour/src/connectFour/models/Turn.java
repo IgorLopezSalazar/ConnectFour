@@ -17,25 +17,25 @@ public class Turn {
 		this.board = board;
 		players = new ArrayList<>();
 		for (int i = 1; i <= PLAYER_NUMBER; i++) {
-			players.add(new Player(Token.values()[i], board));
+			players.add(new Player(Token.values()[i]));
 		}
 	}
 
 	public void switchPlayer() {
 		playerIndex = (playerIndex + 1) % PLAYER_NUMBER;
 	}
-	
+
 	private Player getActivePlayer() {
-        return this.players.get(this.playerIndex);
-    }
-	
+		return this.players.get(this.playerIndex);
+	}
+
 	public Integer getActivePlayerId() {
-        return this.playerIndex;
-    }
-	
+		return this.playerIndex;
+	}
+
 	Token getActiveToken() {
-        return this.getActivePlayer().getToken();
-    }
+		return this.getActivePlayer().getToken();
+	}
 
 	public void reset() {
 		playerIndex = 0;

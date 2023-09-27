@@ -2,11 +2,11 @@ package connectFour.views;
 
 import connectFour.models.Game;
 
-abstract class WithGameView {
+abstract class BaseView {
 
    protected Game game;
 
-   WithGameView(Game game) {
+   BaseView(Game game) {
       this.game = game;
    }
 }

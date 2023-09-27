@@ -2,8 +2,7 @@ package connectFour.views;
 
 import connectFour.models.Game;
 
-
-public class View extends WithGameView {
+public class View extends BaseView {
    
    private StartView startView;
    private PlayView playView;

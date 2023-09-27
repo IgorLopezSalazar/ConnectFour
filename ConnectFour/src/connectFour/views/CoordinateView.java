@@ -5,7 +5,7 @@ import connectFour.models.Game;
 import connectFour.types.Coordinate;
 import connectFour.types.Token;
 
-public class CoordinateView extends WithGameView {
+public class CoordinateView extends BaseView {
 
 	CoordinateView(Game game) {
 		super(game);
@@ -61,18 +61,18 @@ public class CoordinateView extends WithGameView {
 	}
 
 	private Integer findValidRowForColumn(Integer column) {
-		Integer rowPosition = null;
+		Integer row = null;
 
 		for (int i = 0; i < Board.ROW_BOARD_SIZE; i++) {
 			if (game.getToken(new Coordinate(i, column)) == Token.NULL) {
-				rowPosition = i;
+				row = i;
 			}
 		}
 		
-		if(rowPosition == null) {
+		if(row == null) {
 			new MessageView().writeln(Message.NO_SPACE_IN_COLUMN);
 		}
 
-		return rowPosition;
+		return row;
 	}
 }

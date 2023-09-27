@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import connectFour.models.Game;
 
-public class ReadView extends WithGameView {
+public class ReadView extends BaseView {
 	Scanner scanner;
 	
 	ReadView(Game game) {

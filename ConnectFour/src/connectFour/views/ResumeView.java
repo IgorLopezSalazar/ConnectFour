@@ -2,7 +2,7 @@ package connectFour.views;
 
 import connectFour.models.Game;
 
-public class ResumeView extends WithGameView {
+public class ResumeView extends BaseView {
 	private static final String AFFIRMATIVE = "y";
 	private static final String NEGATIVE = "n";
 

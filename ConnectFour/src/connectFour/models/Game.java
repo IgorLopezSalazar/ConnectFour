@@ -4,7 +4,7 @@ import connectFour.types.Coordinate;
 import connectFour.types.Token;
 
 public class Game {
-	private Board board;
+    private Board board;
     private Turn turn;
 
     public Game() {
@@ -20,9 +20,9 @@ public class Game {
     public void switchPlayer() {
         this.turn.switchPlayer();
     }
-    
+
     public Integer getActivePlayerId() {
-    	return this.turn.getActivePlayerId() + 1;
+        return this.turn.getActivePlayerId() + 1;
     }
 
     public Token getActiveToken() {
@@ -32,15 +32,15 @@ public class Game {
     public Token getToken(Coordinate coordinate) {
         return this.board.getToken(coordinate);
     }
-    
+
     public boolean isBoardCompleted() {
         return this.board.isBoardCompleted();
     }
-    
-    public boolean anyGoalCompleted() {
-    	return this.board.anyGoalCompleted();
+
+    public boolean anyLineCompleted() {
+        return this.board.anyLineCompleted();
     }
-    
+
     public void putToken(Coordinate coordinate) {
         this.board.putToken(this.turn.getActiveToken(), coordinate);
     }

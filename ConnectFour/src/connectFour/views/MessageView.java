@@ -6,6 +6,10 @@ public class MessageView {
 		System.out.print(message.toString());
 	}
 
+	void write(String string) {
+		System.out.print(string);
+	}
+
 	void writeln(Message message) {
 		System.out.println(message.toString());
 	}

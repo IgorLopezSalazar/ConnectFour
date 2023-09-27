@@ -2,13 +2,13 @@ package connectFour.views;
 
 import connectFour.models.Game;
 
-public class StartView extends WithGameView {
+public class StartView extends BaseView {
 
    StartView(Game game) {
       super(game);
    }
-   
-   public void interact () {
+
+   public void interact() {
       new MessageView().writeln(Message.TITLE);
       new BoardView().write(this.game);
    }
