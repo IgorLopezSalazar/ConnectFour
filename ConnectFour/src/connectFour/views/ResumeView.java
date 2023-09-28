@@ -17,12 +17,12 @@ public class ResumeView extends BaseView {
 			new MessageView().write(Message.RESUME);
 			response = new ReadView(game).readLine();
 			validAnswer = isAffirmative(response.toLowerCase()) || isNegative(response.toLowerCase());
-			
-			if(!validAnswer) {
+
+			if (!validAnswer) {
 				new MessageView().writeln(Message.RESUME_ANSWER_INCORRECT);
 			}
 		} while (!validAnswer);
-		
+
 		if (isAffirmative(response.toLowerCase())) {
 			this.game.reset();
 		}

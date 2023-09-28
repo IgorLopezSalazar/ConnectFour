@@ -7,6 +7,6 @@ public class TokenView {
 	String[] printValues = {" ", "Y", "R"};
 
    void write(Token token) {
-      new MessageView().write(printValues[token.ordinal()]);
-   }
+		new MessageView().write(printValues[token.ordinal()]);
+	}
 }

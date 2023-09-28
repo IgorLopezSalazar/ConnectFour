@@ -11,7 +11,7 @@ public class Player {
 		this.token = token;
 		this.board = board;
 	}
-	
+
 	public void putToken(Coordinate coordinate) {
 		this.board.putToken(this.token, coordinate);
 	}

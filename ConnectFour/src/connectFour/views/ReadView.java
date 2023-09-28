@@ -6,7 +6,7 @@ import connectFour.models.Game;
 
 public class ReadView extends BaseView {
 	Scanner scanner;
-	
+
 	ReadView(Game game) {
 		super(game);
 		scanner = new Scanner(System.in);

@@ -2,7 +2,7 @@ package connectFour.types;
 
 public enum Direction {
 	NORTH, NORTHEAST, EAST, SOUTHEAST;
-	
+
 	public Coordinate getVectorialDirection() {
 		switch (this) {
 		case NORTH: {
@@ -21,7 +21,7 @@ public enum Direction {
 			throw new IllegalArgumentException();
 		}
 	}
-	
+
 	public Coordinate getInverseVectorial() {
 		Coordinate coordinate = this.getVectorialDirection();
 		return new Coordinate(-coordinate.getRow(), -coordinate.getColumn());
