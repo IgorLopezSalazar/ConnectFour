@@ -21,4 +21,9 @@ public class Coordinate {
 		this.row = this.row + coordinate.getRow();
 		this.column = this.column + coordinate.getColumn();
 	}
+	
+	public boolean isInsideBoard(Integer rowBoardSize, Integer columnBoardSize) {
+		return (this.row >= 0 && this.row < rowBoardSize)
+				&& (this.column >= 0 && this.column < columnBoardSize);
+	}
 }

@@ -11,25 +11,26 @@ public class PlayView extends BaseView {
 	public void interact() {
 		Boolean gameFinished;
 		do {
-			new PlayerView(this.game).putToken();
-			new BoardView(this.game).write();
-			gameFinished = new BoardView(this.game).anyLineCompleted() || new BoardView(this.game).isBoardCompleted();
+	         new PlayerView(this.game).putToken();
+	         new BoardView(this.game).write();
+	         gameFinished = this.game.anyLineCompleted() || this.game.isBoardCompleted();
 
-			if (!gameFinished) {
-				this.game.switchPlayer();
-			}
+	         if (!gameFinished) {
+	            this.game.switchPlayer();
+	         }
 
-		} while (!gameFinished);
-
+	      } while (!gameFinished);
+		
 		checkFinishingCondition();
 	}
-
+	
 	public void checkFinishingCondition() {
-		if (new BoardView(this.game).anyLineCompleted()) {
-			new MessageView().writeln(Message.PLAYER_WIN, this.game.getActiveToken().name(),
-					this.game.getActivePlayerId());
-		} else {
-			new MessageView().writeln(Message.BOARD_FULL);
-		}
-	}
+	      if (this.game.anyLineCompleted()) {
+	         new MessageView().writeln(Message.PLAYER_WIN,
+	               this.game.getActiveToken().name(),
+	               this.game.getActivePlayerId());
+	      } else {
+	         new MessageView().writeln(Message.BOARD_FULL);
+	      }
+	   }
 }

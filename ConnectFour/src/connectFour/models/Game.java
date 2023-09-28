@@ -1,7 +1,6 @@
 package connectFour.models;
 
 import connectFour.types.Coordinate;
-import connectFour.types.Line;
 import connectFour.types.Token;
 
 public class Game {
@@ -37,24 +36,20 @@ public class Game {
     public boolean isBoardCompleted() {
         return this.board.isBoardCompleted();
     }
-    
-    public Token getLastPlacedToken() {
-    	return this.board.getLastPlacedToken();
-    }
-    
-    public Coordinate getLastPlacedCoordinate() {
-		return this.board.getLastPlacedCoordinate();
-	}
-    
-    public boolean coordinateInsideBoard(Coordinate coordinate) {
-    	return this.board.coordinateInsideBoard(coordinate);
-    }
-    
-    public Boolean checkSameTokenInLine(Line line) {
-    	return this.board.checkSameTokenInLine(line);
+
+    public boolean anyLineCompleted() {
+        return this.board.anyLineCompleted();
     }
 
     public void putToken(Coordinate coordinate) {
-        this.board.putToken(this.turn.getActiveToken(), coordinate);
+        this.turn.putToken(coordinate);
+    }
+    
+    public Boolean checkColumnPossible(Integer column) {
+    	return this.board.checkColumnPossible(column);
+    }
+    
+    public Integer findValidRowForColumn(Integer column) {
+    	return this.board.findValidRowForColumn(column);
     }
 }

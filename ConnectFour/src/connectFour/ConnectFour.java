@@ -20,7 +20,6 @@ public class ConnectFour {
 	}
 
 	public static void main(String[] args) {
-		ConnectFour connectFour = new ConnectFour();
-		connectFour.play();
+		new ConnectFour().play();
 	}
 }

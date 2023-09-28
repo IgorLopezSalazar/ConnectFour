@@ -11,11 +11,7 @@ public class PlayerView extends BaseView {
 
    public void putToken() {
       new MessageView().writeln(Message.PLAYER_TURN, this.game.getActiveToken().name(), this.game.getActivePlayerId());
-      Coordinate coordinate = this.getCoordinate();
+      Coordinate coordinate = new CoordinateView(this.game).read();
       this.game.putToken(coordinate);
-   }
-
-   private Coordinate getCoordinate() {
-      return new CoordinateView(this.game).read();
    }
 }

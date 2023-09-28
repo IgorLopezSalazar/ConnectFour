@@ -1,9 +1,7 @@
 package connectFour.views;
 
-import connectFour.models.Board;
 import connectFour.models.Game;
 import connectFour.types.Coordinate;
-import connectFour.types.Token;
 
 public class CoordinateView extends BaseView {
 
@@ -14,10 +12,13 @@ public class CoordinateView extends BaseView {
 	public Coordinate read() {
 		Integer row;
 		Integer column;
-		
+
 		do {
-			column = awaitUntilValidColumn();
-			row = findValidRowForColumn(column);
+			column = this.awaitUntilValidColumn();
+			row = this.game.findValidRowForColumn(column);
+			if (row == null) {
+				new MessageView().writeln(Message.NO_SPACE_IN_COLUMN);
+			}
 		} while (row == null);
 
 		return new Coordinate(row, column);
@@ -25,11 +26,17 @@ public class CoordinateView extends BaseView {
 
 	private Integer awaitUntilValidColumn() {
 		Integer column;
+		Boolean validColumn;
 
 		do {
 			column = this.readColumn();
-		} while (!checkColumnPossible(column));
-		
+			validColumn = this.game.checkColumnPossible(column);
+
+			if (!validColumn) {
+				new MessageView().writeln(Message.NO_VALID_COLUMN);
+			}
+		} while (!validColumn);
+
 		return column;
 	}
 
@@ -46,33 +53,5 @@ public class CoordinateView extends BaseView {
 		} while (column == null);
 
 		return column;
-	}
-
-	private Boolean checkColumnPossible(Integer column) {
-		Boolean possible = false;
-
-		if (column >= 0 && column < Board.COLUMN_BOARD_SIZE) {
-			possible = true;
-		} else {
-			new MessageView().writeln(Message.NO_VALID_COLUMN);
-		}
-
-		return possible;
-	}
-
-	private Integer findValidRowForColumn(Integer column) {
-		Integer row = null;
-
-		for (int i = 0; i < Board.ROW_BOARD_SIZE; i++) {
-			if (game.getToken(new Coordinate(i, column)) == Token.NULL) {
-				row = i;
-			}
-		}
-		
-		if(row == null) {
-			new MessageView().writeln(Message.NO_SPACE_IN_COLUMN);
-		}
-
-		return row;
 	}
 }

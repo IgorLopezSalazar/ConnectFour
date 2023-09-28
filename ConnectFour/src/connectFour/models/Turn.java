@@ -3,6 +3,7 @@ package connectFour.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import connectFour.types.Coordinate;
 import connectFour.types.Token;
 
 public class Turn {
@@ -17,7 +18,7 @@ public class Turn {
 		this.board = board;
 		players = new ArrayList<>();
 		for (int i = 1; i <= PLAYER_NUMBER; i++) {
-			players.add(new Player(Token.values()[i]));
+			players.add(new Player(Token.values()[i], board));
 		}
 	}
 
@@ -39,5 +40,9 @@ public class Turn {
 
 	public void reset() {
 		playerIndex = 0;
+	}
+
+	public void putToken(Coordinate coordinate) {
+		this.getActivePlayer().putToken(coordinate);
 	}
 }
