@@ -10,6 +10,6 @@ public class StartView extends BaseView {
 
    public void interact() {
       new MessageView().writeln(Message.TITLE);
-      new BoardView().write(this.game);
+      new BoardView(game).write();
    }
 }
