@@ -7,7 +7,7 @@ import connectFour.types.Coordinate;
 import connectFour.types.Token;
 
 public class Turn {
-	static Integer PLAYER_NUMBER = 2;
+	static final Integer PLAYER_NUMBER = 2;
 
 	Board board;
 	List<Player> players;
@@ -23,26 +23,26 @@ public class Turn {
 	}
 
 	public void switchPlayer() {
-		playerIndex = (playerIndex + 1) % PLAYER_NUMBER;
+		this.playerIndex = (this.playerIndex + 1) % PLAYER_NUMBER;
+	}
+
+	public Token getActiveToken() {
+		return this.getActivePlayer().getToken();
 	}
 
 	private Player getActivePlayer() {
 		return this.players.get(this.playerIndex);
 	}
 
+	public void putToken(Coordinate coordinate) {
+		this.getActivePlayer().putToken(coordinate);
+	}
+
 	public Integer getActivePlayerId() {
 		return this.playerIndex;
 	}
 
-	Token getActiveToken() {
-		return this.getActivePlayer().getToken();
-	}
-
 	public void reset() {
 		playerIndex = 0;
-	}
-
-	public void putToken(Coordinate coordinate) {
-		this.getActivePlayer().putToken(coordinate);
 	}
 }

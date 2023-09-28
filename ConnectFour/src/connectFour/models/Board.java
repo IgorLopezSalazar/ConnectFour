@@ -18,6 +18,10 @@ public class Board {
 		this.initializeBoard();
 	}
 
+	public void reset() {
+		this.initializeBoard();
+	}
+
 	private void initializeBoard() {
 		for (int i = 0; i < ROW_BOARD_SIZE; i++) {
 			Arrays.fill(tokens[i], Token.NULL);
@@ -25,12 +29,10 @@ public class Board {
 	}
 
 	public Boolean anyLineCompleted() {
-		assert tokens[lastPlacedCoordinate.getRow()][lastPlacedCoordinate.getColumn()] != Token.NULL;
-
 		Boolean anyLineCompleted = false;
 		for (Direction direction : Direction.values()) {
 			Line line = new Line(new Coordinate(lastPlacedCoordinate.getRow(), lastPlacedCoordinate.getColumn()), direction);
-			anyLineCompleted = anyLineCompleted || checkLineCompletion(line);
+			anyLineCompleted = anyLineCompleted || this.checkLineCompletion(line);
 		}
 		return anyLineCompleted;
 	}
@@ -38,9 +40,9 @@ public class Board {
 	private Boolean checkLineCompletion(Line line) {
 		Boolean lineAchieved = false;
 		for (int i = 0; i < Line.CONNECTED_TOKEN_LINE && !lineAchieved; i++) {
-			Boolean lineOutsideBoard = checkLineOutsideBoard(line);
+			Boolean lineOutsideBoard = this.checkLineOutsideBoard(line);
 			if (!lineOutsideBoard) {
-				lineAchieved = checkSameTokenInLine(line);
+				lineAchieved = this.checkSameTokenInLine(line);
 			}
 			line.iterateCoordinates();
 		}
@@ -57,6 +59,22 @@ public class Board {
 					.map(coord -> this.getToken(coord))
 					.distinct()
 					.count() == 1;
+	}
+
+		public Token getToken(Coordinate coordinate) {
+		return this.tokens[coordinate.getRow()][coordinate.getColumn()];
+	}
+
+		public Integer findValidRowForColumn(Integer column) {
+		Integer row = null;
+
+		for (int i = 0; i < Board.ROW_BOARD_SIZE; i++) {
+			if (this.getToken(new Coordinate(i, column)) == Token.NULL) {
+				row = i;
+			}
+		}
+
+		return row;
 	}
 
 	public Boolean isBoardCompleted() {
@@ -78,14 +96,6 @@ public class Board {
 		lastPlacedCoordinate = coordinate;
 	}
 
-	public void reset() {
-		this.initializeBoard();
-	}
-
-	public Token getToken(Coordinate coordinate) {
-		return this.tokens[coordinate.getRow()][coordinate.getColumn()];
-	}
-
 	public Boolean checkColumnPossible(Integer column) {
 		Boolean possible = false;
 
@@ -94,17 +104,5 @@ public class Board {
 		}
 
 		return possible;
-	}
-	
-	public Integer findValidRowForColumn(Integer column) {
-		Integer row = null;
-
-		for (int i = 0; i < Board.ROW_BOARD_SIZE; i++) {
-			if (this.getToken(new Coordinate(i, column)) == Token.NULL) {
-				row = i;
-			}
-		}
-
-		return row;
 	}
 }

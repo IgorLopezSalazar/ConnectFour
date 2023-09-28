@@ -44,12 +44,12 @@ public class Game {
     public void putToken(Coordinate coordinate) {
         this.turn.putToken(coordinate);
     }
-    
+
     public Boolean checkColumnPossible(Integer column) {
-    	return this.board.checkColumnPossible(column);
+        return this.board.checkColumnPossible(column);
     }
-    
+
     public Integer findValidRowForColumn(Integer column) {
-    	return this.board.findValidRowForColumn(column);
+        return this.board.findValidRowForColumn(column);
     }
 }
